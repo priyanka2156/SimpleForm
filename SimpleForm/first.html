@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form method="post" action="" name="contactform" id="contactform">
+      <label for="name">First Name</label>
+      <input
+        type="text"
+        id="name"
+        name="first name"
+        placeholder="Enter First name"
+        required
+      />
+
+      <label for="name">Last Name</label>
+      <input
+        type="text"
+        id="name"
+        name="last name"
+        placeholder="Enter Last name"
+        required
+      />
+
+      <label for="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="Enter you email id"
+        required
+      />
+
+      <label for="contact">Contact Number</label>
+      <input type="number" id="number" name="mobile" />
+
+      <label for="message">Message</label>
+      <textarea
+        name="message"
+        id="message"
+        col="10"
+        rows="4"
+        placeholder="Type your message here"
+        required
+      ></textarea>
+
+      <button type="submit">Submit</button>
+      <!-- <input type="submit" value="Submit"> -->
+    </form>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwRCZs1JxNYRSImsGB-zG5rbZKjTktk1OuSL1MgpRcWPjAQ7uTpaW4w4obdOxPGkiQW/exec";
+      const form = document.forms["contactform"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>
+            alert("Thank you! your form is submitted successfully.")
+          )
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
